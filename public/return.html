@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="website icon" type="png" href="/asses/favicon-32x32.png">
+    <!-- Name -->
+
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    keyframes: {
+                        typing: {
+                            "0%": {
+                                width: "0%",
+                                visibility: "hidden"
+                            },
+                            "100%": {
+                                width: "100%"
+                            }
+                        },
+                        blink: {
+                            "50%": {
+                                borderColor: "transparent"
+                            },
+                            "100%": {
+                                borderColor: "white"
+                            }
+                        }
+                    },
+                    animation: {
+                        typing: "typing 2s steps(20) infinite alternate, blink .7s infinite"
+                    }
+                },
+            },
+            plugins: [],
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+    <div x-data="{ cartOpen: false , isOpen: false }" class="bg-white">
+        <header>
+            <div class="container mx-auto px-6 py-3">
+                <div class="flex items-center justify-between">
+                    <div class="hidden w-full text-gray-600 md:flex md:items-center">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.2721 10.2721C16.2721 12.4813 14.4813 14.2721 12.2721 14.2721C10.063 14.2721 8.27214 12.4813 8.27214 10.2721C8.27214 8.06298 10.063 6.27212 12.2721 6.27212C14.4813 6.27212 16.2721 8.06298 16.2721 10.2721ZM14.2721 10.2721C14.2721 11.3767 13.3767 12.2721 12.2721 12.2721C11.1676 12.2721 10.2721 11.3767 10.2721 10.2721C10.2721 9.16755 11.1676 8.27212 12.2721 8.27212C13.3767 8.27212 14.2721 9.16755 14.2721 10.2721Z"
+                                fill="currentColor" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5.79417 16.5183C2.19424 13.0909 2.05438 7.39409 5.48178 3.79417C8.90918 0.194243 14.6059 0.054383 18.2059 3.48178C21.8058 6.90918 21.9457 12.6059 18.5183 16.2059L12.3124 22.7241L5.79417 16.5183ZM17.0698 14.8268L12.243 19.8965L7.17324 15.0698C4.3733 12.404 4.26452 7.97318 6.93028 5.17324C9.59603 2.3733 14.0268 2.26452 16.8268 4.93028C19.6267 7.59603 19.7355 12.0268 17.0698 14.8268Z"
+                                fill="currentColor" />
+                        </svg>
+                        <span class="mx-1 text-sm">NY</span>
+                    </div>
+                    <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
+                        Brand
+                    </div>
+                    <div class="flex items-center justify-end w-full">
+                        <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <div class="flex sm:hidden">
+                            <button @click="isOpen = !isOpen" type="button"
+                                class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                                aria-label="toggle menu">
+                                <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                                    <path fill-rule="evenodd"
+                                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-center sm:items-center mt-4">
+                    <div class="flex flex-col sm:flex-row">
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.html">Home</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.html">Shop</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.html">Categories</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="Contact.html">Contact</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.html">About</a>
+                    </div>
+                </nav>
+                <div class="relative mt-6 max-w-lg mx-auto">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                        <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+
+                    <input
+                        class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Search">
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+
+    <section class="text-center h-auto mt-10">
+        <div class="mx-auto max-w-7x1 px-6 sm:px-8 md:px-12">
+            <h2 class="text-2xl mt-3 font-semibold md:text-3x1">RETURN POLICY</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 mt-10">
+                <div class="grid1-item  text-left m-0 lg:mx-32 md:mx-28 sm:m-0 ">
+
+                    <!--  -->
+
+                    <p class="font-sans mb-36">
+                        All sales are final, even if you make a drunk purchase. No returns or exchanges are accepted on
+                        any orders except those that arrived faulty.
+                        <br>
+                        Damaged or defective items must be reported within 7 days of delivery. No requests shall be
+                        entertained after that.
+                        <br>
+<br>
+                        Please contact us through <a href="https://shirtsthatgohard.com/pages/contact"
+                            class="text-blue-700"> this form</a> if your order did not arrive as expected.
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="bg-slate-900 py-4 text-center h-auto">
+        <div class="mx-auto max-w-7x1 px-6 sm:px-8 md:px-12">
+            <h2 class="text-2xl mt-3 font-semibold md:text-3x1 text-white">Quick links</h2>
+            <div class="inline-flex mt-5 md:m-0 text-center m-auto ">
+                <div class="-mx-4 text-center mt-6 mb-7">
+                    <a href="terms.html"
+                        class="px-4 text-base text-white transition-colors hover:underline text-center mx-auto">TERMS OF
+                        SERVICE</a>
+                    <a href="privacy.html"
+                        class="px-4 text-base text-white transition-colors hover:underline text-center mx-auto">PRIVACY
+                        POLICY</a>
+                    <a href="shipping.html"
+                        class="px-4 text-base text-white transition-colors hover:underline text-center mx-auto">SHIPPING</a>
+                    <a href="return.html"
+                        class="px-4 text-base text-white transition-colors hover:underline text-center mx-auto">RETURN
+                        POLICY</a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                <div class="grid1-item ">
+                    <div class="text-left float-left ">
+                        <h5 class="text-white font-sans text-lg">Subscribe to ours emails</h5>
+                        <input id="email" type="text"
+                            class="px-4 py-2 text-gray-700 mt-3 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 "
+                            placeholder="Email Address">
+
+                        <button
+                            class=" px-3 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                            <i class="fa-solid fa-right-long"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="grid1-item ">
+                    <button
+                        class=" mt-8 md:mt-8 sm:mt-0 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300  focus:outline-none bg-indigo-800 border-white rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                        <i class="fa-solid fa-heart"></i> Follow on Shop
+                    </button>&nbsp;
+                    <a href="#" class="text-white text-xl"> <i class="fa-brands fa-facebook "></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+</body>
+
+</html>
